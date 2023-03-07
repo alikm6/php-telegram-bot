@@ -1,0 +1,22 @@
+{
+  "name": "alikm6/php-telegram-bot",
+  "description": "PHP Telegram Bot API",
+  "license": "MIT",
+  "keywords": [
+    "telegram",
+    "bot",
+    "api"
+  ],
+  "authors": [],
+  "require": {
+    "php": "^7.4||^8.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "php-curl-class/php-curl-class": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "TelegramBot\\": "src"
+    }
+  }
+}
