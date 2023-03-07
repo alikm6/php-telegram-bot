@@ -18,6 +18,13 @@ To install the package, use Composer:
 composer require alikm6/php-telegram-bot:v1.6.5
 ```
 
+If you encounter error `it does not match your minimum-stability` during installation, run the following commands and try again:
+
+```console
+composer config minimum-stability dev
+composer config prefer-stable true
+```
+
 ## Usage
 
 To use this package, you first need to create a Telegram object as follows:
