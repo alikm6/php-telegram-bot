@@ -14,7 +14,7 @@ To use PHP Telegram Bot API, you need the following:
 
 To install the package, use Composer:
 
-```consol
+```console
 composer require alikm6/php-telegram-bot:v1.6.5
 ```
 
