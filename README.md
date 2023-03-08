@@ -30,9 +30,7 @@ composer config prefer-stable true
 To use this package, you first need to create a Telegram object as follows:
 
 ```php
-use TelegramBot/Telegram;
-
-$tg = new Telegram('your-bot-token');
+$tg = new TelegramBot\Telegram('your-bot-token');
 ```
 
 ### Parse Update
@@ -41,6 +39,14 @@ If you have set up a webhook for your bot, you can receive the information sent 
 ```php
 $update = $tg->parseUpdate();
 ```
+
+For more security, if you want to process only requests sent from Telegram servers and ignore other requests, you can use the following code at the beginning of your webhook file.
+
+```php
+TelegramBot\Telegram::limit_access_to_telegram_only();
+```
+
+In this case, if a request has not been sent from the Telegram servers, the php script will stop and the request will not be processed.
 
 ### Use of methods
 You can use any of the Telegram Bot API methods, for example:

@@ -2016,4 +2016,46 @@ class Telegram
 
         return true;
     }
+
+    /**
+     * Using this function, you can check whether the request sent to the server was from Telegram or not.
+     * If the request sent is not from the Telegram side, the script will stop.
+     *
+     * @return void
+     */
+    public static function limit_access_to_telegram_only()
+    {
+        $client = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote = $_SERVER['REMOTE_ADDR'];
+
+        if (filter_var($client, FILTER_VALIDATE_IP)) {
+            $ipAddress = $client;
+        } elseif (filter_var($forward, FILTER_VALIDATE_IP)) {
+            $ipAddress = $forward;
+        } else {
+            $ipAddress = $remote;
+        }
+
+        if (!isset($ipAddress)) {
+            die('Error. No ip detected!');
+        }
+
+        $ip = sprintf('%u', ip2long($ipAddress));
+
+        // 149.154.160.0/20	    =	149.154.160.0 ~ 149.154.175.255
+        // 91.108.4.0/22	    =	91.108.4.0 ~ 91.108.7.255
+        // The source of the above IPs: https://core.telegram.org/bots/webhooks#the-short-version
+        // Convert IP to number: https://ipconvertertools.com/ip-2-bin-hex-dec-converter
+
+        if (($ip >= 2509938688) && ($ip <= 2509942783)) { // ok
+            return;
+        }
+
+        if (($ip >= 1533805568) && ($ip <= 1533806591)) { // ok
+            return;
+        }
+
+        die('Error. You have not Telegram valid IP.');
+    }
 }
