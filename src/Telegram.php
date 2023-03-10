@@ -1923,7 +1923,7 @@ class Telegram
      *
      * @return string
      */
-    public function ReplyKeyboardRemove(array $parameters = []): string
+    public function replyKeyboardRemove(array $parameters = []): string
     {
         return json_encode(array_merge(['remove_keyboard' => true, 'selective' => false], $parameters));
     }
