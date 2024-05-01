@@ -11,8 +11,8 @@ use CURLFile;
 /**
  * Class representing a Telegram Bot API client.
  *
- * Class Version: 1.6.5
- * Telegram API Version: 6.5
+ * Class Version: 1.1.72
+ * Telegram API Version: 7.2
  *
  * @package TelegramBot
  */
@@ -1614,6 +1614,7 @@ class Telegram
     }
 
     /**
+     * Renamed the method setStickerSetThumb to setStickerSetThumbnail since v6.6
      * More information: https://core.telegram.org/bots/api#setstickersetthumb
      *
      * @param array $parameters An associative array of parameters to pass to the API method.
@@ -1627,6 +1628,22 @@ class Telegram
     public function setStickerSetThumb(array $parameters = [], array $options = [])
     {
         return $this->sendMethod('setStickerSetThumb', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setstickersetthumbnail
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setStickerSetThumbnail(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setStickerSetThumbnail', $parameters, $options);
     }
 
     /**
@@ -1787,6 +1804,310 @@ class Telegram
     public function getGameHighScores(array $parameters = [], array $options = [])
     {
         return $this->sendMethod('getGameHighScores', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setmydescription
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setMyDescription(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setMyDescription', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#getmydescription
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function getMyDescription(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('getMyDescription', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setmyshortdescription
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setMyShortDescription(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setMyShortDescription', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#getmyshortdescription
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function getMyShortDescription(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('getMyShortDescription', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setcustomemojistickersetthumbnail
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setCustomEmojiStickerSetThumbnail(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setCustomEmojiStickerSetThumbnail', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setstickersettitle
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setStickerSetTitle(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setStickerSetTitle', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#deletestickerset
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function deleteStickerSet(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('deleteStickerSet', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setstickeremojilist
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setStickerEmojiList(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setStickerEmojiList', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setstickerkeywords
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setStickerKeywords(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setStickerKeywords', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setstickermaskposition
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setStickerMaskPosition(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setStickerMaskPosition', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setmyname
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setMyName(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setMyName', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#getmyname
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function getMyName(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('getMyName', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#unpinallgeneralforumtopicmessages
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function unpinAllGeneralForumTopicMessages(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('unpinAllGeneralForumTopicMessages', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#setmessagereaction
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function setMessageReaction(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('setMessageReaction', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#deletemessages
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function deleteMessages(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('deleteMessages', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#forwardmessages
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function forwardMessages(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('forwardMessages', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#getuserchatboosts
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function getUserChatBoosts(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('getUserChatBoosts', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#getbusinessconnection
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function getBusinessConnection(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('getBusinessConnection', $parameters, $options);
+    }
+
+    /**
+     * More information: https://core.telegram.org/bots/api#replacestickerinset
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function replaceStickerInSet(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('replaceStickerInSet', $parameters, $options);
     }
 
     /**

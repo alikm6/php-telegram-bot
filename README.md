@@ -1,6 +1,6 @@
 # PHP Telegram Bot API
 
-This is a simple PHP package that provides an easy-to-use interface for the Telegram Bot API (https://core.telegram.org/bots). It is compliant with the February 3, 2023 Telegram Bot API update (version 6.5) and supports sending multiple requests at once.
+This is a simple PHP package that provides an easy-to-use interface for the Telegram Bot API (https://core.telegram.org/bots). It is compliant with the March 31, 2024 Telegram Bot API update (version 7.2) and supports sending multiple requests at once.
 
 ## Requirements
 
@@ -15,7 +15,7 @@ To use PHP Telegram Bot API, you need the following:
 To install the package, use Composer:
 
 ```console
-composer require alikm6/php-telegram-bot:v1.0.65
+composer require alikm6/php-telegram-bot:v1.1.72
 ```
 
 If you encounter error `it does not match your minimum-stability` during installation, run the following commands and try again:
