@@ -11,7 +11,7 @@ use CURLFile;
 /**
  * Class representing a Telegram Bot API client.
  *
- * Class Version: 1.1.72
+ * Class Version: 1.2.72
  * Telegram API Version: 7.2
  *
  * @package TelegramBot
