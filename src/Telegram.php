@@ -2261,6 +2261,16 @@ class Telegram
         return json_encode(array_merge(['force_reply' => true, 'selective' => false], $parameters));
     }
 
+    /**
+     * More information: https://core.telegram.org/bots/api#linkpreviewoptions
+     *
+     * @return string
+     */
+    public function disableLinkPreview(): string
+    {
+        return json_encode(['is_disabled' => true]);
+    }
+
 
     /**
      * @param string $error_message
