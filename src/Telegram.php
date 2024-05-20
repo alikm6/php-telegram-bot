@@ -2232,7 +2232,7 @@ class Telegram
      *
      * @return string
      */
-    public function replyKeyboardMarkup(array $parameters): string
+    public static function replyKeyboardMarkup(array $parameters): string
     {
         return json_encode($parameters);
     }
@@ -2244,7 +2244,7 @@ class Telegram
      *
      * @return string
      */
-    public function replyKeyboardRemove(array $parameters = []): string
+    public static function replyKeyboardRemove(array $parameters = []): string
     {
         return json_encode(array_merge(['remove_keyboard' => true, 'selective' => false], $parameters));
     }
@@ -2256,7 +2256,7 @@ class Telegram
      *
      * @return string
      */
-    public function forceReply(array $parameters = []): string
+    public static function forceReply(array $parameters = []): string
     {
         return json_encode(array_merge(['force_reply' => true, 'selective' => false], $parameters));
     }
@@ -2266,7 +2266,7 @@ class Telegram
      *
      * @return string
      */
-    public function disableLinkPreview(): string
+    public static function disableLinkPreview(): string
     {
         return json_encode(['is_disabled' => true]);
     }
