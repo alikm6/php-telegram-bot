@@ -11,7 +11,7 @@ use CURLFile;
 /**
  * Class representing a Telegram Bot API client.
  *
- * Class Version: 1.2.72
+ * Class Version: 1.3.72
  * Telegram API Version: 7.2
  *
  * @package TelegramBot
@@ -2322,27 +2322,36 @@ class Telegram
      */
     private function run_url_in_background(string $url, array $parameters = [], int $timeout = 60): bool
     {
-        $cmd = "curl";
-        $cmd .= " ";
-        $cmd .= "--max-time {$timeout}";
+        $cmd = "curl --max-time " . escapeshellarg($timeout);
+
         if (!empty($parameters)) {
             foreach ($parameters as $key => $p) {
                 if (empty($p)) {
                     continue;
-                } elseif (is_bool($p) || is_string($p) || is_numeric($p)) {
-                    $cmd .= " --data \"" . str_replace('"', "\\\"", $key . "=" . $p) . "\"";
+                }
+
+                $escapedKey = escapeshellarg($key);
+
+                if (is_string($p) || is_numeric($p)) {
+                    $escapedValue = escapeshellarg((string)$p);
+
+                    $cmd .= " --form-string {$escapedKey}={$escapedValue}";
+                } elseif (is_bool($p)) {
+                    $escapedValue = $p ? "true" : "false";
+
+                    $cmd .= " --form {$escapedKey}={$escapedValue}";
                 } elseif ($p instanceof CURLFile) {
-                    $cmd .= " --form \"" . str_replace('"', "\\\"", $key . "=@" . $p->name) . "\"";
+                    $escapedValue = escapeshellarg("@" . $p->getFilename());
+
+                    $cmd .= " --form {$escapedKey}={$escapedValue}";
                 } else {
                     return false;
                 }
             }
         }
 
-        $cmd .= " ";
-        $cmd .= "\"" . str_replace('"', "\\\"", $url) . "\"";
-        $cmd .= " ";
-        $cmd .= "> /dev/null 2>&1 &";
+        $cmd .= " " . escapeshellarg($url) . " > /dev/null 2>&1 &";
+
         exec($cmd);
 
         return true;
