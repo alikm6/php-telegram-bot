@@ -3,16 +3,16 @@
 namespace TelegramBot;
 
 use Curl\MultiCurl;
+use CURLFile;
 use ErrorException;
 use InvalidArgumentException;
-use CURLFile;
 
 
 /**
  * Class representing a Telegram Bot API client.
  *
- * Class Version: 1.3.72
- * Telegram API Version: 7.2
+ * Class Version: 1.4.74
+ * Telegram API Version: 7.4
  *
  * @package TelegramBot
  */
@@ -27,7 +27,7 @@ class Telegram
     private array $default_options = [
         'send_error' => true,
         'run_in_background' => false,
-        'return' => 'result_array' //result_array, result_object, response, response_array, response_object
+        'return' => 'result_array', //result_array, result_object, response, response_array, response_object
     ];
 
     private MultiCurl $MultiCurl;
@@ -80,9 +80,11 @@ class Telegram
                     throw new InvalidArgumentException("Invalid run_in_background option.");
                 }
             } elseif ($key == 'return') {
-                if (!in_array($val, [
-                    'result_array', 'result_array', 'result_object', 'response', 'response_array', 'response_object'
-                ])) {
+                if (
+                    !in_array($val, [
+                        'result_array', 'result_array', 'result_object', 'response', 'response_array', 'response_object',
+                    ])
+                ) {
                     throw new InvalidArgumentException("Invalid return option.");
                 }
             } else {
@@ -2111,6 +2113,22 @@ class Telegram
     }
 
     /**
+     * More information: https://core.telegram.org/bots/api#refundstarpayment
+     *
+     * @param array $parameters An associative array of parameters to pass to the API method.
+     * @param array $options An array of options for this specific API request.
+     *  $options can contain the same keys as $default_options.
+     *
+     * @return mixed|bool|null The result of the API request, as specified by the 'return' option.
+     *
+     * @throws ErrorException
+     */
+    public function refundStarPayment(array $parameters = [], array $options = [])
+    {
+        return $this->sendMethod('refundStarPayment', $parameters, $options);
+    }
+
+    /**
      * @param string $method_name The API method to call.
      * @param array $parameters An associative array of parameters to pass to the API method.
      * @param array $options An array of options for this specific API request.
@@ -2214,11 +2232,11 @@ class Telegram
             }
         } else {
             if (!$is_multi) {
-                return $this->run_url_in_background($main_url, $parameters, $this->timeout);
+                return $this->run_url_in_background($main_url, $parameters, null, $this->timeout);
             } else {
                 $response = [];
                 foreach ($parameters as $key => $p) {
-                    $response[$key] = $this->run_url_in_background($main_url, $p, $this->timeout);
+                    $response[$key] = $this->run_url_in_background($main_url, $p, null, $this->timeout);
                 }
                 return $response;
             }
@@ -2287,13 +2305,13 @@ class Telegram
         }
 
         if ($this->update_from_chat != null) {
-            $this->sendMessage(array("chat_id" => $this->update_from_chat, 'text' => $error_message), ['send_error' => false]);
+            $this->sendMessage(["chat_id" => $this->update_from_chat, 'text' => $error_message], ['send_error' => false]);
         } elseif ($this->update_from != null) {
-            $this->sendMessage(array("chat_id" => $this->update_from, 'text' => $error_message), ['send_error' => false]);
+            $this->sendMessage(["chat_id" => $this->update_from, 'text' => $error_message], ['send_error' => false]);
         }
 
         if ($this->ch_error_id != null && $this->ch_error_id != $this->update_from_chat && $this->ch_error_id != $this->update_from) {
-            $this->sendMessage(array("chat_id" => $this->ch_error_id, 'text' => $error_message), ['send_error' => false]);
+            $this->sendMessage(["chat_id" => $this->ch_error_id, 'text' => $error_message], ['send_error' => false]);
         }
 
         return true;
@@ -2315,18 +2333,31 @@ class Telegram
 
     /**
      * @param string $url
-     * @param array $parameters An associative array of parameters to pass to the url.
+     * @param array|null $parameters An associative array of parameters to pass to the url.
+     * @param array|null $headers
      * @param int $timeout
      *
      * @return bool
      */
-    private function run_url_in_background(string $url, array $parameters = [], int $timeout = 60): bool
+    private function run_url_in_background(string $url, ?array $parameters = null, ?array $headers = null, int $timeout = 60): bool
     {
         $cmd = "curl --max-time " . escapeshellarg($timeout);
 
+        if (!empty($headers)) {
+            foreach ($headers as $header) {
+                if (!is_string($header)) {
+                    return false;
+                }
+
+                $escapedHeader = escapeshellarg($header);
+
+                $cmd .= " --header {$escapedHeader}";
+            }
+        }
+
         if (!empty($parameters)) {
             foreach ($parameters as $key => $p) {
-                if (empty($p)) {
+                if ($p === null) {
                     continue;
                 }
 
