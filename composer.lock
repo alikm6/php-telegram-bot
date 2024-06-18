@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa551d4d2caa4f597a1058494b585fd7",
+    "content-hash": "5bd2cb7536a62282a30c6b6b5a54bdb7",
     "packages": [
         {
             "name": "php-curl-class/php-curl-class",
-            "version": "dev-master",
+            "version": "9.19.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-curl-class/php-curl-class.git",
-                "reference": "a1625e0dcec3b8af23d76492743cc70da2a3fc07"
+                "reference": "c41efeb4ea2dc3cf8f90f8f967b0fcf45a41e294"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/a1625e0dcec3b8af23d76492743cc70da2a3fc07",
-                "reference": "a1625e0dcec3b8af23d76492743cc70da2a3fc07",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/c41efeb4ea2dc3cf8f90f8f967b0fcf45a41e294",
+                "reference": "c41efeb4ea2dc3cf8f90f8f967b0fcf45a41e294",
                 "shasum": ""
             },
             "require": {
@@ -37,7 +37,6 @@
             "suggest": {
                 "ext-mbstring": "*"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -83,17 +82,15 @@
             ],
             "support": {
                 "issues": "https://github.com/php-curl-class/php-curl-class/issues",
-                "source": "https://github.com/php-curl-class/php-curl-class/tree/master"
+                "source": "https://github.com/php-curl-class/php-curl-class/tree/9.19.2"
             },
-            "time": "2024-04-29T18:24:47+00:00"
+            "time": "2024-04-09T18:03:13+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "php-curl-class/php-curl-class": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
